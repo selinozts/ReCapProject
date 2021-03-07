@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -15,12 +16,12 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryCarDal()
         {
             _cars = new List<Car> {
-                new Car {Id = 1, BrandId = 1, ColorId = 1, DailyPrice =146000 , ModelYear = 2014, Model = "Alfa Romeo"},
-                new Car { Id = 2, BrandId = 2, ColorId = 2, DailyPrice = 209750, ModelYear = 2017, Model = "Honda" },
-                new Car { Id = 3, BrandId = 3, ColorId = 5, DailyPrice = 272000, ModelYear = 2018, Model = "Hyundai" },
-                new Car { Id = 4, BrandId = 4, ColorId = 3, DailyPrice = 197500, ModelYear = 2020, Model = "Nissan" },
-                new Car { Id = 5, BrandId = 5, ColorId = 4, DailyPrice = 202500, ModelYear = 2016, Model = "Volkswagen" },
-                new Car { Id = 6, BrandId = 6, ColorId = 2, DailyPrice = 839000, ModelYear = 2015, Model = "Tesla" }
+                new Car {Id = 1, BrandId = 1, ColorId = 1, DailyPrice =146 , ModelYear = 2014, Model = "Alfa Romeo"},
+                new Car { Id = 2, BrandId = 2, ColorId = 2, DailyPrice = 209, ModelYear = 2017, Model = "Honda" },
+                new Car { Id = 3, BrandId = 3, ColorId = 5, DailyPrice = 272, ModelYear = 2018, Model = "Hyundai" },
+                new Car { Id = 4, BrandId = 4, ColorId = 3, DailyPrice = 197, ModelYear = 2020, Model = "Nissan" },
+                new Car { Id = 5, BrandId = 5, ColorId = 4, DailyPrice = 202, ModelYear = 2016, Model = "Volkswagen" },
+                new Car { Id = 6, BrandId = 6, ColorId = 2, DailyPrice = 839, ModelYear = 2015, Model = "Tesla" }
             };
         }
 
@@ -36,6 +37,11 @@ namespace DataAccess.Concrete.InMemory
             Car carToDelete = _cars.SingleOrDefault(c => c.Id == car.Id);
 
             _cars.Remove(carToDelete);
+        }
+
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Car> GetAll()
@@ -56,6 +62,11 @@ namespace DataAccess.Concrete.InMemory
         public List<Car> GetByld(int Id)
         {
             return _cars.Where(p => p.Id == Id).ToList();
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car car)
